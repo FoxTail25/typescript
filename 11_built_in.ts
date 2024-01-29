@@ -25,3 +25,4 @@ let prom = new Promise((res, rej) => {
     res('ok')
 })
 prom.then(res => console.log(res))
+
