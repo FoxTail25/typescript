@@ -195,4 +195,23 @@ let arrNumAddNum: SFuncNum_and_arr = (num, arr) => {
     arr.push(num);
     return arr
 }
-console.log(arrNumAddNum(1,[3,2]))
+// console.log(arrNumAddNum(1, [3, 2]))
+
+let arrSubstructNum: SFuncNum_and_arr = (num, arr) => {
+    if (arr.includes(num)) {
+        return arr.filter(el => el != num)
+    } else {
+        return [...arr]
+    }
+}
+// console.log(arrSubstructNum(3, [3, 4, 5]))
+// console.log(arrSubstructNum(1, [3, 4, 5]))
+
+let func2234 = (num1: number, num2: number): number => num1 + num2;
+
+let func4322 = (str: string): string[] => str.split('');
+
+let arr: number[] = [1, 2, 3];
+let res: number[] = arr.map(num => num ** 2);
+
+console.log(res);

@@ -166,4 +166,23 @@ let arrNumAddNum = (num, arr) => {
     arr.push(num);
     return arr;
 };
-console.log(arrNumAddNum(1, [3, 2]));
+// console.log(arrNumAddNum(1, [3, 2]))
+let arrSubstructNum = (num, arr) => {
+    if (arr.includes(num)) {
+        return arr.filter(el => el != num);
+    }
+    else {
+        return [...arr];
+    }
+};
+function make(arr, func) {
+    let sum = 0;
+    for (let elem of arr) {
+        sum += func(elem);
+    }
+    return sum;
+}
+let res = make([1, 2, 3], function (num) {
+    return num ** 2;
+});
+console.log(res);
