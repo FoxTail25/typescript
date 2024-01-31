@@ -175,14 +175,19 @@ let arrSubstructNum = (num, arr) => {
         return [...arr];
     }
 };
-function make(arr, func) {
-    let sum = 0;
-    for (let elem of arr) {
-        sum += func(elem);
-    }
-    return sum;
+// console.log(arrSubstructNum(3, [3, 4, 5]))
+// console.log(arrSubstructNum(1, [3, 4, 5]))
+let func2234 = (num1, num2) => num1 + num2;
+let func4322 = (str) => str.split('');
+let arr = [1, 2, 3];
+let res = arr.map(num => num ** 2);
+// console.log(res);
+//==================================================================================================
+//Типизирование коллбэков
+// Для функций коллбэков так же можно указывать тип параметров и тип возвращаемого значения
+function make(x, func) {
+    return func(x);
 }
-let res = make([1, 2, 3], function (num) {
-    return num ** 2;
-});
-console.log(res);
+console.log(make(3, function (x) { return x ** 2; }));
+console.log(make(3, (num) => num ** 3));
+console.log(make(3, (num) => num + 3));

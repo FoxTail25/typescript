@@ -214,4 +214,15 @@ let func4322 = (str: string): string[] => str.split('');
 let arr: number[] = [1, 2, 3];
 let res: number[] = arr.map(num => num ** 2);
 
-console.log(res);
+// console.log(res);
+
+//==================================================================================================
+//Типизирование коллбэков
+// Для функций коллбэков так же можно указывать тип параметров и тип возвращаемого значения
+function make(x: number, func: (y: number) => number): number {
+    return func(x)
+}
+console.log(make(3, function (x: number): number { return x ** 2 }));
+console.log(make(3, (num: number): number => num ** 3));
+console.log(make(3, (num: number): number => num + 3));
+
