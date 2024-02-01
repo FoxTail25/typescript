@@ -11,3 +11,4 @@ let stud: Student = new Student()
 console.log(stud.name)
 stud.name = 'John'
 console.log(stud.name)
+
