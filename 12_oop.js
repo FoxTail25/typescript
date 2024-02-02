@@ -129,4 +129,35 @@ class Student2 extends User5 {
     }
 }
 let stud2 = new Student2('john');
-stud2.showName();
+// stud2.showName()
+// Задача
+// Дан следующий класс:
+class User22 {
+    constructor(name, surn) {
+        this.level = 'midle';
+        this.name = name;
+        this.surn = surn;
+    }
+}
+// Унаследуйте от этого класса класс Employee, который добавит защищенное свойство salary, а также геттеры всех свойств, как своих, так и унаследованных.
+class Emploeey22 extends User22 {
+    constructor(name, surn, salary) {
+        super(name, surn); // super по сути является конструктором предка(родителя)
+        this.salary = 3000;
+        if (salary) { // т.к. переменная salary в конструкторе указана как необязательная (salary?:). поставим ветвление, которое будет срабатывать только если переменная salary получит значение
+            this.salary = salary;
+        }
+    }
+    getName() {
+        console.log(this.name);
+    }
+    getSurn() {
+        console.log(this.surn);
+    }
+    getSal() {
+        console.log(this.salary);
+    }
+}
+let emp22 = new Emploeey22('Bin', 'red', 5000);
+emp22.getSal();
+console.log(emp22.level);
