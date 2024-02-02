@@ -77,7 +77,7 @@ let us = new User2();
 class User3 {
     constructor(name, age) {
         this.sex = 'male';
-        this.sex2 = "fuck";
+        this.sex2 = "male";
         this.name = name;
         this.age = age;
     }
@@ -99,14 +99,34 @@ class User3 {
     }
 }
 let us3 = new User3('Max', 40);
-us3.getName();
-us3.getAge();
+// us3.getName()
+// us3.getAge()
 us3.setName('Born');
 us3.setAge(30);
-us3.getName();
-us3.getAge();
+// us3.getName()
+// us3.getAge()
 class User4 extends User3 {
 }
 let us4 = new User4('Mila', 35);
-us4.getAge();
-us4.getSex();
+// us4.getAge()
+// us4.getSex()
+// Модификатор protected
+// ?!?!?__Приватные свойства и методы не наследуются потомкамт__?!?! 
+// Иногда нам нужно что бы свойства и методы были недоступны снаружи класса, но при этом наследовались потомками. В таких случаях используется модификатор protected
+class User5 {
+    cape(str) {
+        return str[0].toUpperCase() + str.slice(1);
+    }
+}
+// Сдулаем класс student наследуемый от класса user
+class Student2 extends User5 {
+    constructor(name) {
+        super();
+        this.name = name;
+    }
+    showName() {
+        console.log(this.cape(this.name));
+    }
+}
+let stud2 = new Student2('john');
+stud2.showName();

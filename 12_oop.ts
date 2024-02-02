@@ -88,7 +88,7 @@ class User3 {
     private name: string;
     private age: number;
     private sex: string = 'male';
-    sex2: string = "fuck"
+    sex2: string = "male"
     constructor(name: string, age: number) {
         this.name = name;
         this.age = age;
@@ -111,16 +111,73 @@ class User3 {
     }
 }
 let us3 = new User3('Max', 40)
-us3.getName()
-us3.getAge()
+// us3.getName()
+// us3.getAge()
 us3.setName('Born')
 us3.setAge(30)
-us3.getName()
-us3.getAge()
+// us3.getName()
+// us3.getAge()
 
 class User4 extends User3 {
 
 }
 let us4 = new User4('Mila', 35)
-us4.getAge()
-us4.getSex()
+// us4.getAge()
+// us4.getSex()
+
+// Модификатор protected
+// ?!?!?__Приватные свойства и методы не наследуются потомкамт__?!?! 
+// Иногда нам нужно что бы свойства и методы были недоступны снаружи класса, но при этом наследовались потомками. В таких случаях используется модификатор protected
+
+class User5 {
+    protected cape(str:string) {
+        return str[0].toUpperCase() + str.slice(1)
+    }
+}
+
+// Сдулаем класс student наследуемый от класса user
+
+class Student2 extends User5 {
+    private name:string;
+    constructor(name:string) {
+        super();
+        this.name = name
+    }
+    public showName():void {
+        console.log(this.cape(this.name))
+    }
+}
+let stud2 = new Student2('john');
+// stud2.showName()
+
+// Задача
+// Дан следующий класс:
+
+class User22 {
+	protected name: string;
+	protected surn: string;
+	
+	constructor(name: string, surn: string) {
+		this.name = name;
+		this.surn = surn;
+	}
+}
+// Унаследуйте от этого класса класс Employee, который добавит защищенное свойство salary, а также геттеры всех свойств, как своих, так и унаследованных.
+
+class Emploeey22 extends User22 {
+        protected salary:number = 3000;
+    constructor(name:string, surn: string){
+        super(name, surn);
+        this.name = name;
+        this.surn = surn;
+    }
+    getName():void {
+        console.log(this.name)
+    }
+    getSurn():void {
+        console.log(this.surn)
+    }
+    getSal():void {
+        console.log(this.salary)
+    }
+}
