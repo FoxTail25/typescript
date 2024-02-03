@@ -134,17 +134,12 @@ let stud2 = new Student2('john');
 // Дан следующий класс:
 class User22 {
     constructor(name, surn) {
-        this.test = 'test';
         this.level = 'midle';
         this.name = name;
         this.surn = surn;
     }
-    getTest() {
-        console.log(this.test);
-    }
 }
 let us22 = new User22('run', 'bun');
-us22.getTest();
 // Унаследуйте от этого класса класс Employee, который добавит защищенное свойство salary, а также геттеры всех свойств, как своих, так и унаследованных.
 class Emploeey22 extends User22 {
     constructor(name, surn, salary) {
@@ -167,7 +162,6 @@ class Emploeey22 extends User22 {
 let emp22 = new Emploeey22('Bin', 'red', 5000);
 // emp22.getSal()
 // console.log(emp22.level)
-emp22.getTest();
 // Модификатор readonly
 // С помощью модификатора readonly свойства можно сделать доступными только для чтения.
 class User6 {
@@ -177,7 +171,7 @@ class User6 {
     }
 }
 let us6 = new User6('John', 40);
-console.log(us6.name); // = John;
+// console.log(us6.name) // = John;
 // us6.name = 'Eric' // Такая запись вызовет ошибку т.к. свойство name доступно только для четния.
 //==============================================================================================
 // Так же как в чистом JavaScript в typeScript можно делать "аксессоры свойств" (гетеры и сеттеры).
@@ -206,13 +200,44 @@ class User7 {
         return this.age;
     }
 }
-//==================================================================================================
+//======================================================================================================================================
 // Статические свойства. 
 // В typeScript можно делать свойства которые будут принадлежать классу а не объекту. Такие свойства называются статическими(static). Статические свойства можно вызывать без создания объекта. Просто обратившись к классу в котором они объявленны. Для того, что бы сделать свойство статическим, нужно полсле объявления модификатора написать ключевое слово static.
 // Пример:
 class User8 {
-    constructor(name, salary) {
+    constructor(name) {
         this.name = name;
+    }
+    setSalary(sal) {
+        User8.salary = sal;
     }
 }
 User8.salary = 2000;
+console.log(User8.salary);
+class Student3 extends User8 {
+    constructor(name) {
+        super(name);
+        this.name = name;
+        Student3.salary = Student3.salary + 500;
+    }
+}
+Student3.speciality = 'programmer';
+// Статические свойства принадлежат конструктору класса и будут общими для всех объектов этого класса! НО!! При наследовании класса. Статические свойства будут отилчаться. Т.е. У родительского класса будут свои статические метод(ы), а у его потомков свои!!
+//===========================================================================================================================================
+// Статические методы класс
+// Статическими могут быть не только свойства но и методы. Такие методы, так же как и свойства можно вызывать без объявления класс.
+// Пример:
+class Calc0 {
+    static getSum(arr) {
+        return arr.reduce((acc, el) => acc += el, 0);
+    }
+    static getSumSquare(arr) {
+        return arr.reduce((acc, el) => acc += el ** 2, 0);
+    }
+    static getSumQube(arr) {
+        return arr.reduce((acc, el) => acc += el ** 3, 0);
+    }
+}
+console.log(Calc0.getSum([1, 2, 3]));
+console.log(Calc0.getSumSquare([1, 2, 3]));
+console.log(Calc0.getSumQube([1, 2, 3]));

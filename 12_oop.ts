@@ -204,7 +204,7 @@ class User6 {
     }
 }
 let us6 = new User6('John', 40);
-console.log(us6.name) // = John;
+// console.log(us6.name) // = John;
 // us6.name = 'Eric' // Такая запись вызовет ошибку т.к. свойство name доступно только для четния.
 
 //==============================================================================================
@@ -242,7 +242,48 @@ class User7 {
 class User8 {
     public name: string; //1) свойство name нельзя сделать статическим. т.к. они будет конфликтовать со встроенным свойством name
     public static salary: number = 2000;
-    constructor(name: string, salary: number) {
+    constructor(name: string) {
         this.name = name;
     }
+    setSalary(sal: number) {
+        User8.salary = sal
+    }
 }
+console.log(User8.salary)
+
+class Student3 extends User8 {
+    public static speciality: string = 'programmer'
+
+    constructor(name: string) {
+        super(name);
+        this.name = name;
+        Student3.salary = Student3.salary + 500
+    }
+}
+
+// Статические свойства принадлежат конструктору класса и будут общими для всех объектов этого класса! НО!! При наследовании класса. Статические свойства будут отилчаться. Т.е. У родительского класса будут свои статические метод(ы), а у его потомков свои!!
+
+//===========================================================================================================================================
+
+// Статические методы класс
+// Статическими могут быть не только свойства но и методы. Такие методы, так же как и свойства можно вызывать без объявления класса.
+// Пример:
+
+class Calc0 {
+    static getSum(arr: number[]): number {
+        return arr.reduce((acc, el) => acc += el, 0)
+    }
+    static getSumSquare(arr: number[]): number {
+        return arr.reduce((acc, el) => acc += el ** 2, 0)
+    }
+    static getSumQube(arr: number[]): number {
+        return arr.reduce((acc, el) => acc += el ** 3, 0)
+    }
+}
+console.log(Calc0.getSum([1, 2, 3]))
+console.log(Calc0.getSumSquare([1, 2, 3]))
+console.log(Calc0.getSumQube([1, 2, 3]))
+
+// Абстрактные ООП классы в typeScript
+
+
