@@ -249,7 +249,7 @@ class User8 {
         User8.salary = sal
     }
 }
-console.log(User8.salary)
+// console.log(User8.salary) // 2000
 
 class Student3 extends User8 {
     public static speciality: string = 'programmer'
@@ -305,8 +305,8 @@ class studAbs extends UserAbs { // но мы можем использовать
     }
 }
 let stA = new studAbs('studs', 5)
-console.log(stA.name)
-console.log(stA.course)
+// console.log(stA.name) // studs
+// console.log(stA.course) // 5
 // ==========================================================================================================================================
 // Задача: Создайте абстрактный класс Figure, представляющий собой геометрическую(четырёхстороннюю) фигуру. Пусть в нем будут свойства для периметра и площади.
 
@@ -329,15 +329,15 @@ abstract class FugureA {
 
 class Square extends FugureA { }
 let sqrt = new Square(2, 2)
-sqrt.getSquare()
-sqrt.getPerimetr()
+// sqrt.getSquare() //4
+// sqrt.getPerimetr() //8
 
 //Сделайте класс Rectangle, наследующий от класса Figure.
 
 class Rectangle extends FugureA { }
 let rect = new Rectangle(3, 4)
-rect.getSquare()
-rect.getPerimetr()
+// rect.getSquare() //12
+// rect.getPerimetr() //14
 
 // =========================================================================================================================================
 // Адстрактные методы в ООП typeScript
@@ -407,5 +407,93 @@ class Rectangle2 extends FugureA2 {
         let perimetr = (this.sideA + this.sideB) * 2
         console.log(perimetr)
         return perimetr
+    }
+}
+
+//===========================================================================================================================================
+
+
+//===========================================================================================================================================
+// Интерфейсы в ООП
+// Интерфейсы объявляются ключевым словом interface. Что бы избежать конфликтов имен. Имена интерфейсво принято называть с заглавной буквы "I"
+// Пример 
+interface IUser {
+    name: string;
+    age: number;
+}
+// Теперь мы можем создать объект с заданными свойствами (и их типами)
+let userInt: IUser = {
+    name: 'John',
+    age: 30
+}
+// Изменение типа свойств, имени свойст или добавление и удаление свойств данного объекта будет приводить к ошибке.
+
+// Задача 1
+// Создайте интерфейс IMath со свойствами num1 и num2.
+interface IMath {
+    num1: number;
+    num2: number;
+}
+// Задача 2
+// Реализуйте объект calc созданного выше интерфейса.
+let calc: IMath = {
+    num1: 5,
+    num2: 7
+}
+//===========================================================================================================================================
+// Методы интерфейсов
+// В интерфейс так же можно добавлять методы объектов. Для этого нужно задать имя метода, тип параметров и тип возвращаемого значения.
+interface IUser2 {
+    name: string;
+    age: number;
+    greet(greet: string): string;
+}
+// Реализуем наш метод в объекте:
+let userInt2: IUser2 = {
+    name: "Mark",
+    age: 44,
+    greet(greet: string) {
+        return greet + ', ' + this.name + '!'
+    },
+}
+
+console.log(userInt2.greet('Hello'))
+
+// Задача 1
+// Для интерфейса IUser3, реализуйте метод для проверки возраста. Если возраст юзера меньше 18, пусть отобразится сообщение о том, что доступ запрещен.
+
+interface IUser3 {
+    name: string;
+    age: number;
+    greet(greet: string): string;
+    isAdult(): string;
+}
+let userInt3: IUser3 = {
+    name: 'John',
+    age: 17,
+    greet(greet: string) {
+        return `${greet}, ${this.name}!`
+    },
+    isAdult() {
+        if (this.age < 18) {
+            return 'Доступ запрещён'
+        } else {
+            return 'Доступ разрешён'
+        }
+    },
+}
+
+// Задача 2
+// Создайте интерфейс IMath со свойствами num1 и num2, а также методом getSum, который будет суммировать оба числа.
+interface IMath2 {
+    num1: number;
+    num2: number;
+    getSum(): number;
+}
+let calc2: IMath2 = {
+    num1: 4,
+    num2: 5,
+    getSum() {
+        return this.num1 + this.num2
     }
 }

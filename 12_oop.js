@@ -213,7 +213,7 @@ class User8 {
     }
 }
 User8.salary = 2000;
-console.log(User8.salary);
+// console.log(User8.salary) // 2000
 class Student3 extends User8 {
     constructor(name) {
         super(name);
@@ -257,8 +257,8 @@ class studAbs extends UserAbs {
     }
 }
 let stA = new studAbs('studs', 5);
-console.log(stA.name);
-console.log(stA.course);
+// console.log(stA.name) // studs
+// console.log(stA.course) // 5
 // ==========================================================================================================================================
 // Задача: Создайте абстрактный класс Figure, представляющий собой геометрическую(четырёхстороннюю) фигуру. Пусть в нем будут свойства для периметра и площади.
 class FugureA {
@@ -277,12 +277,86 @@ class FugureA {
 class Square extends FugureA {
 }
 let sqrt = new Square(2, 2);
-sqrt.getSquare();
-sqrt.getPerimetr();
+// sqrt.getSquare() //4
+// sqrt.getPerimetr() //8
 //Сделайте класс Rectangle, наследующий от класса Figure.
 class Rectangle extends FugureA {
 }
 let rect = new Rectangle(3, 4);
-rect.getSquare();
-rect.getPerimetr();
+// rect.getSquare() //12
+// rect.getPerimetr() //14
 // =========================================================================================================================================
+// Адстрактные методы в ООП typeScript
+// Бывает так, что у классов-потомков должен быть общий метод, однако, реализация этого метода зависит от конкретного потомка. В этом случаке этот метод можно  объявить в абстрактном классе родителя, не написав его реализаци. И тогда потомки обязаны реализовать этот метод. Такие методы называются абстрактными и так же объявляются с помощью ключевого слова abstract.
+// Пример:
+class PeoplA {
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Employee_PA extends PeoplA {
+    constructor(name, salary) {
+        super(name);
+        this.salary = salary;
+    }
+    show() {
+        return `${this.name} ${this.salary}`;
+    }
+}
+// Задача: В абстрактном классе Figure сделайте абстрактные методы для получения площади и периметра.
+class FugureA2 {
+    constructor(a, b) {
+        this.sideA = a;
+        this.sideB = b;
+    }
+}
+class Sqrt2 extends FugureA2 {
+    constructor(a, b) {
+        super(a, b);
+    }
+    getSquare() {
+        let square = this.sideA * this.sideB;
+        console.log(square);
+        return square;
+    }
+    getPerimetr() {
+        let perimetr = (this.sideA + this.sideB) * 2;
+        console.log(perimetr);
+        return perimetr;
+    }
+}
+class Rectangle2 extends FugureA2 {
+    constructor(a, b) {
+        super(a, b);
+    }
+    getSquare() {
+        let square = this.sideA * this.sideB;
+        console.log(square);
+        return square;
+    }
+    getPerimetr() {
+        let perimetr = (this.sideA + this.sideB) * 2;
+        console.log(perimetr);
+        return perimetr;
+    }
+}
+// Теперь мы можем создать объект с заданными свойствами (и их типами)
+let userInt = {
+    name: 'John',
+    age: 30
+};
+// Задача 2
+// Реализуйте объект calc созданного выше интерфейса.
+let calc = {
+    num1: 5,
+    num2: 7
+};
+// Реализуем наш метод в объекте:
+let userInt2 = {
+    name: "Mark",
+    age: 44,
+    greet(greet) {
+        return greet + ', ' + this.name + '!';
+    },
+};
+console.log(userInt2.greet('Hello'));
