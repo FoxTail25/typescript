@@ -191,3 +191,53 @@ let emp22 = new Emploeey22('Bin', 'red', 5000)
 
 // Модификатор readonly
 // С помощью модификатора readonly свойства можно сделать доступными только для чтения.
+class User6 {
+    readonly name: string;
+    readonly age: number;
+    constructor(name:string, age:number) {
+        this.name = name;
+        this.age = age;
+    }
+}
+let us6 = new User6('John', 40);
+console.log(us6.name) // = John;
+// us6.name = 'Eric' // Такая запись вызовет ошибку т.к. свойство name доступно только для четния.
+
+//==============================================================================================
+// Так же как в чистом JavaScript в typeScript можно делать "аксессоры свойств" (гетеры и сеттеры).
+// Однако в отличии от js, в ts имена аксессоров не должны совпадать с именами свойств.
+
+class User7 {
+    private name: string = '';
+    private age: number = NaN;
+
+    public set _name (name:string) {
+        this.name = name;
+    }
+    public get _name () {
+        return this.name
+    }
+
+    public set _age (age:number) {
+        this.age = age;
+        if(0 < age && age < 120) {
+            this.age = age;
+        } else {
+            console.log('warning wrong age');
+        }
+    }
+    public get _age (){
+        return this.age
+    }
+}
+//==================================================================================================
+// Статические свойства. 
+// В typeScript можно делать свойства которые будут принадлежать классу а не объекту. Такие свойства называются статическими(static). Статические свойства можно вызывать без создания объекта. Просто обратившись к классу в котором они объявленны. Для того, что бы сделать свойство статическим, нужно полсле объявления модификатора написать ключевое слово static.
+// Пример:
+class User8 {
+    public name:string; //1) свойство name нельзя сделать статическим. т.к. они будет конфликтовать со встроенным свойством name
+    public static salary:number = 2000;
+    constructor(name:string, salary:number) {
+        this.name = name;
+    }
+}
