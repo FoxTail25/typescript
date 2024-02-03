@@ -280,10 +280,132 @@ class Calc0 {
         return arr.reduce((acc, el) => acc += el ** 3, 0)
     }
 }
-console.log(Calc0.getSum([1, 2, 3]))
-console.log(Calc0.getSumSquare([1, 2, 3]))
-console.log(Calc0.getSumQube([1, 2, 3]))
+// console.log(Calc0.getSum([1, 2, 3]))
+// console.log(Calc0.getSumSquare([1, 2, 3]))
+// console.log(Calc0.getSumQube([1, 2, 3]))
 
 // Абстрактные ООП классы в typeScript
+// Если нам необходим класс, содержащий общие свойства и методы. И от него мы будем наследовать классы потомков. При этом мы не будем создавать экзепляров класс. Что бы явно запретить создавать экземпляры класса, такой класс объявляется абстрактным. Для этого используется ключевое слово abstract.
+// Пример
 
+abstract class UserAbs {
+    public name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+}
 
+// let usA = new UserAbs('Mark') // Такая запись прведёт к ошибке т.к. невозможно создать экзепляр абстрактного класса!
+
+class studAbs extends UserAbs { // но мы можем использовать класс UserAbs для наследования.
+    public course: number;
+    constructor(name: string, course: number) {
+        super(name)
+        this.course = course;
+    }
+}
+let stA = new studAbs('studs', 5)
+console.log(stA.name)
+console.log(stA.course)
+// ==========================================================================================================================================
+// Задача: Создайте абстрактный класс Figure, представляющий собой геометрическую(четырёхстороннюю) фигуру. Пусть в нем будут свойства для периметра и площади.
+
+abstract class FugureA {
+    protected sideA: number;
+    protected sideB: number;
+    constructor(a: number, b: number) {
+        this.sideA = a;
+        this.sideB = b;
+    }
+    getSquare() {
+        console.log(this.sideA * this.sideB)
+    }
+    getPerimetr() {
+        console.log((this.sideA + this.sideB) * 2)
+    }
+}
+
+// Сделайте класс Square, наследующий от класса Figure.
+
+class Square extends FugureA { }
+let sqrt = new Square(2, 2)
+sqrt.getSquare()
+sqrt.getPerimetr()
+
+//Сделайте класс Rectangle, наследующий от класса Figure.
+
+class Rectangle extends FugureA { }
+let rect = new Rectangle(3, 4)
+rect.getSquare()
+rect.getPerimetr()
+
+// =========================================================================================================================================
+// Адстрактные методы в ООП typeScript
+// Бывает так, что у классов-потомков должен быть общий метод, однако, реализация этого метода зависит от конкретного потомка. В этом случаке этот метод можно  объявить в абстрактном классе родителя, не написав его реализаци. И тогда потомки обязаны реализовать этот метод. Такие методы называются абстрактными и так же объявляются с помощью ключевого слова abstract.
+
+// Пример:
+abstract class PeoplA {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    abstract show(): string;
+}
+
+class Employee_PA extends PeoplA {
+    salary: number;
+    constructor(name: string, salary: number) {
+        super(name);
+        this.salary = salary
+    }
+    show(): string {
+        return `${this.name} ${this.salary}`
+    }
+}
+
+// Задача: В абстрактном классе Figure сделайте абстрактные методы для получения площади и периметра.
+
+abstract class FugureA2 {
+    protected sideA: number;
+    protected sideB: number;
+    constructor(a: number, b: number) {
+        this.sideA = a;
+        this.sideB = b;
+    }
+    abstract getSquare(): number;
+    abstract getPerimetr(): number;
+}
+
+class Sqrt2 extends FugureA2 {
+    constructor(a: number, b: number) {
+        super(a, b)
+    }
+    getSquare(): number {
+        let square = this.sideA * this.sideB
+        console.log(square)
+        return square
+    }
+    getPerimetr(): number {
+        let perimetr = (this.sideA + this.sideB) * 2
+        console.log(perimetr)
+        return perimetr
+    }
+}
+
+class Rectangle2 extends FugureA2 {
+    constructor(a: number, b: number) {
+        super(a, b)
+    }
+    getSquare(): number {
+        let square = this.sideA * this.sideB
+        console.log(square)
+        return square
+    }
+    getPerimetr(): number {
+        let perimetr = (this.sideA + this.sideB) * 2
+        console.log(perimetr)
+        return perimetr
+    }
+}
