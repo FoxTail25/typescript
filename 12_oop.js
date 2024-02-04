@@ -400,8 +400,10 @@ let test = {
 let func = function (a, b) {
     return a > b;
 };
+//===========================================================================
+// Интерфейс можно использовать "фрагментарно"(частично)! Для этого, после имени интерфейса указываем его свойство в кавычках и квадратных скобках. 
+//===========================================================================
 let funcZ1 = (s1, s2) => s1 + ' ' + s2;
-console.log(funcZ1('Hello', 'world'));
 let funcZ2 = (num) => {
     let arrDivid = [];
     for (let n = 1; n <= num; n++) {
@@ -411,6 +413,30 @@ let funcZ2 = (num) => {
     }
     return arrDivid;
 };
-console.log(funcZ2(10));
 let funcZ3 = (str) => str.split(' ');
-console.log(funcZ3('Шла собака по шоссе'));
+let arr = ['a', 'b'];
+// Вышеописанным интерфейсом, мы создали индексируемы объект, у которого значением индекса может быть только тип number. А значения только string. По сути, эта запись аналогична типу string[] т.е. массиву строк.
+let arrTyp = ['a', 'b', 'c'];
+let arrType2 = [1, 2, 3];
+// console.log(typeof arrType2) // object
+// console.log('it`s arr ' + Array.isArray(arrType2)) //true
+console.dir(arrType2); //true
+let obj = {
+    a: "abc",
+    b: 2,
+    c: (n) => n ** 2,
+    d: (s) => s.toString()
+};
+console.log(obj.c(3));
+console.log(obj.d(3));
+let objArr = {
+    1: 'a',
+    2: 'b',
+    3: 'c',
+};
+console.log(Array.isArray(objArr)); //false
+// Вроде всё верно, но....
+let objArr2 = ['a', 'b', 'c',];
+console.log(Array.isArray(objArr2)); //true
+let map = new Map();
+console.log(map instanceof Map);
