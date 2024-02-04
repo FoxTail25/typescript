@@ -359,4 +359,58 @@ let userInt2 = {
         return greet + ', ' + this.name + '!';
     },
 };
-console.log(userInt2.greet('Hello'));
+let userInt3 = {
+    name: 'John',
+    age: 17,
+    greet(greet) {
+        return `${greet}, ${this.name}!`;
+    },
+    isAdult() {
+        if (this.age < 18) {
+            return 'Доступ запрещён';
+        }
+        else {
+            return 'Доступ разрешён';
+        }
+    },
+};
+let calc2 = {
+    num1: 4,
+    num2: 5,
+    getSum() {
+        return this.num1 + this.num2;
+    }
+};
+let Rectangle3 = {
+    height: 200,
+    width: 300,
+};
+// В данном примере мы не указали свойство color. И ошибки при этом нет.
+// Можно обратиться к этому свойству и это так же не вызовет ошибку.
+// console.log(Rectangle3.color) // undefine
+// Можно присвоить значение этому свойству
+Rectangle3.color = 'red';
+// Или удалить его
+delete Rectangle3.color;
+let test = {
+    test: "a",
+    test2: 3
+};
+// Теперь сделаем функцию на основе этого интерфейса.
+let func = function (a, b) {
+    return a > b;
+};
+let funcZ1 = (s1, s2) => s1 + ' ' + s2;
+console.log(funcZ1('Hello', 'world'));
+let funcZ2 = (num) => {
+    let arrDivid = [];
+    for (let n = 1; n <= num; n++) {
+        if (num % n == 0) {
+            arrDivid.push(n);
+        }
+    }
+    return arrDivid;
+};
+console.log(funcZ2(10));
+let funcZ3 = (str) => str.split(' ');
+console.log(funcZ3('Шла собака по шоссе'));
